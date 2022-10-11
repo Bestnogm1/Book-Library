@@ -1,7 +1,5 @@
-const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/books`;
+const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/books/allBooks`;
 
-async function getAllBooks() {
-  const date = await fetch(BASE_URL, {
-    method: "POST",
-  });
+export async function getAllBooks() {
+  return fetch(BASE_URL).then((res) => res.json());
 }
