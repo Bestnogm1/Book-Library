@@ -43,14 +43,16 @@ function AllBooks({}) {
                           <h6>no img available</h6>
                         )}
                       </div>
-                      <div>
-                        <h5> {title}</h5>
-                        <h5>{authors}</h5>
+                      <div className={styles.allBooksTitleAuthors}>
+                        <div>
+                          <h5> {title}</h5>
+                          <h5>{authors}</h5>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div className={styles.allBooksDescription}>
-                    <h5>{description}</h5>
+                    {/* <h5>{description}</h5> */}
                   </div>
                 </div>
               </>
