@@ -1,4 +1,4 @@
-.booksContainer {
+.allBooksContainer {
   border: 1px solid;
   display: flex;
   flex-direction: column;
@@ -15,8 +15,19 @@
   padding-right: 2rem;
 }
 
-.allBooksContainer {
-}
-.allBooksContainer {
+.allBooksInnerContainer {
   display: flex;
+  flex-wrap: wrap;
+}
+
+.booksContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  width: 20%;
+  height: 20%;
+}
+.allBooksDescription {
+  font-size: 12px;
+  /* border: 5px solid blue; */
 }

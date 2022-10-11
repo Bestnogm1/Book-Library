@@ -19,40 +19,44 @@ function AllBooks({}) {
   return (
     <>
       <div className={styles.allBooksContainer}>
-        {books?.map((book) => {
-          let title = book?.volumeInfo.title;
-          let description = book?.volumeInfo.description;
-          let image1 = book?.volumeInfo.imageLinks?.smallThumbnail;
-          let buyLink = book?.volumeInfo.infoLink;
-          let authors = book?.volumeInfo?.authors[0];
-          return (
-            <>
-              <div className={styles.booksContainer}>
-                <div>
-                  <div className={styles.imgTitle}>
-                    <div className={styles.imgTag}>
-                      {image1 ? (
-                        <img
-                          src={image1}
-                          width="120"
-                          height="155"
-                          alt="imgtag"
-                        />
-                      ) : (
-                        <h6>no img available</h6>
-                      )}
-                    </div>
-                    <div>
-                      <h5> {title}</h5>
-                      <h5>{authors}</h5>
+        <div className={styles.allBooksInnerContainer}>
+          {books?.map((book) => {
+            let title = book?.volumeInfo.title;
+            let description = book?.volumeInfo.description;
+            let image1 = book?.volumeInfo.imageLinks?.smallThumbnail;
+            let buyLink = book?.volumeInfo.infoLink;
+            let authors = book?.volumeInfo?.authors[0];
+            return (
+              <>
+                <div className={styles.booksContainer}>
+                  <div>
+                    <div className={styles.imgTitle}>
+                      <div className={styles.imgTag}>
+                        {image1 ? (
+                          <img
+                            src={image1}
+                            width="120"
+                            height="155"
+                            alt="imgtag"
+                          />
+                        ) : (
+                          <h6>no img available</h6>
+                        )}
+                      </div>
+                      <div>
+                        <h5> {title}</h5>
+                        <h5>{authors}</h5>
+                      </div>
                     </div>
                   </div>
+                  <div className={styles.allBooksDescription}>
+                    <h5>{description}</h5>
+                  </div>
                 </div>
-                <h5>{description}</h5>
-              </div>
-            </>
-          );
-        })}
+              </>
+            );
+          })}
+        </div>
       </div>
     </>
   );
