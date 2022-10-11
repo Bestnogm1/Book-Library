@@ -10,11 +10,6 @@ import * as authService from "./services/authService";
 import * as bookService from "./services/bookService";
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
-  const [books, setBooks] = useState();
-  useEffect(() => {
-    bookService.getAllBooks().then((res) => setBooks(res));
-  }, []);
-  console.log(books);
   const navigate = useNavigate();
 
   const handleLogout = () => {

@@ -1,0 +1,10 @@
+.booksContainer {
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+}
+.imgTitle {
+  border: 1px solid;
+  display: flex;
+  flex-direction: row;
+}
