@@ -3,7 +3,7 @@ import styles from "./AllBooks.module.css";
 
 function AllBooks({}) {
   const [books, setBooks] = useState();
-  const [search, setSearch] = useState("Cracking the Coding Interview");
+  const [search, setSearch] = useState("dairy of the");
 
   useEffect(() => {
     async function findBookAllBook(looking) {
@@ -18,12 +18,11 @@ function AllBooks({}) {
 
   return (
     <>
-      <div>
+      <div className={styles.allBooksContainer}>
         {books?.map((book) => {
           let title = book?.volumeInfo.title;
           let description = book?.volumeInfo.description;
           let image1 = book?.volumeInfo.imageLinks?.smallThumbnail;
-          let image2 = book?.volumeInfo.imageLinks?.thumbnail;
           let buyLink = book?.volumeInfo.infoLink;
           let authors = book?.volumeInfo?.authors[0];
           return (
@@ -31,7 +30,7 @@ function AllBooks({}) {
               <div className={styles.booksContainer}>
                 <div>
                   <div className={styles.imgTitle}>
-                    <div>
+                    <div className={styles.imgTag}>
                       {image1 ? (
                         <img
                           src={image1}
