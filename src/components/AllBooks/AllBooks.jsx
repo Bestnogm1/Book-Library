@@ -3,7 +3,7 @@ import styles from "./AllBooks.module.css";
 
 function AllBooks({}) {
   const [books, setBooks] = useState();
-  const [search, setSearch] = useState("dairy of the");
+  const [search, setSearch] = useState("zyTCAlFPjgYC");
 
   useEffect(() => {
     async function findBookAllBook(looking) {
@@ -15,10 +15,14 @@ function AllBooks({}) {
     }
     findBookAllBook(search);
   }, []);
-
+  console.log(books);
+  const getId = (bookId) => {
+    console.log(bookId);
+  };
   return (
     <>
       <div className={styles.allBooksContainer}>
+        <h1>books</h1>
         <div className={styles.allBooksInnerContainer}>
           {books?.map((book) => {
             let title = book?.volumeInfo.title;
@@ -26,9 +30,13 @@ function AllBooks({}) {
             let image = book?.volumeInfo.imageLinks?.smallThumbnail;
             let buyLink = book?.volumeInfo.infoLink;
             let authors = book?.volumeInfo?.authors[0];
+            let bookId = book?.id;
             return (
               <>
-                <div className={styles.booksContainer} key={book.id}>
+                <div
+                  className={styles.booksContainer}
+                  key={book?.volumeInfo.id}
+                >
                   <div>
                     <div className={styles.imgTitle}>
                       <div className={styles.imgTag}>
@@ -47,6 +55,9 @@ function AllBooks({}) {
                         <div>
                           <h5> {title}</h5>
                           <h5>{authors}</h5>
+                          <button onClick={() => getId(bookId)}>
+                            add to collection
+                          </button>
                         </div>
                       </div>
                     </div>
