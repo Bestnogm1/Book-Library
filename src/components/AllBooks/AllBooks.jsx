@@ -23,7 +23,7 @@ function AllBooks({}) {
           {books?.map((book) => {
             let title = book?.volumeInfo.title;
             let description = book?.volumeInfo.description;
-            let image1 = book?.volumeInfo.imageLinks?.smallThumbnail;
+            let image = book?.volumeInfo.imageLinks?.smallThumbnail;
             let buyLink = book?.volumeInfo.infoLink;
             let authors = book?.volumeInfo?.authors[0];
             return (
@@ -32,9 +32,9 @@ function AllBooks({}) {
                   <div>
                     <div className={styles.imgTitle}>
                       <div className={styles.imgTag}>
-                        {image1 ? (
+                        {image ? (
                           <img
-                            src={image1}
+                            src={image}
                             width="120"
                             height="155"
                             alt="imgtag"
@@ -52,7 +52,7 @@ function AllBooks({}) {
                     </div>
                   </div>
                   <div className={styles.allBooksDescription}>
-                    {/* <h5>{description}</h5> */}
+                    <h5>{description}</h5>
                   </div>
                 </div>
               </>
