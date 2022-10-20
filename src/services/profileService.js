@@ -9,7 +9,7 @@ async function getAllProfiles() {
   return await res.json();
 }
 async function showUserBooks(profileId) {
-  let response = await fetch(`${BASE_URL}/show`, {
+  const response = await fetch(`${BASE_URL}/show`, {
     method: "POST",
     headers: {
       "content-type": "application/json",

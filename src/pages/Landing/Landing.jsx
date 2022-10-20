@@ -1,7 +1,6 @@
 import AllBooks from "../../components/AllBooks/AllBooks";
 import styles from "./Landing.module.css";
 const Landing = ({ user }) => {
-  console.log(user);
   return (
     <main className={styles.container}>
       <>

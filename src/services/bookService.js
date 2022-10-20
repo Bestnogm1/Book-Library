@@ -1,8 +1,8 @@
 import * as tokenService from "../services/tokenService";
-let baseUrl = `http://localhost:3001/api/`;
+const baseUrl = `http://localhost:3001/api/`;
 
 export async function searchForAllBook(bookTitle) {
-  let response = await fetch(`${baseUrl}books/getAllSearchedBook`, {
+  const response = await fetch(`${baseUrl}books/getAllSearchedBook`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -14,7 +14,7 @@ export async function searchForAllBook(bookTitle) {
 }
 
 export async function getBookById(_bookId) {
-  let response = await fetch(`${baseUrl}`, {
+  const response = await fetch(`${baseUrl}`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -26,7 +26,7 @@ export async function getBookById(_bookId) {
 }
 
 export async function getASingleBookId(bookId) {
-  let response = await fetch(`${baseUrl}books/getABookByID`, {
+  const response = await fetch(`${baseUrl}books/getABookByID`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -37,7 +37,7 @@ export async function getASingleBookId(bookId) {
   return response.json();
 }
 export async function addBookToCollection(bookId) {
-  let response = await fetch(`${baseUrl}books/addBookToCollection`, {
+  const response = await fetch(`${baseUrl}books/addBookToCollection`, {
     method: "POST",
     headers: {
       "content-type": "application/json",

@@ -3,14 +3,12 @@ import { useParams } from "react-router-dom";
 import { showUserBooks } from "../../services/profileService";
 
 function ProfileDetail({ props }) {
-  let [profileBook, setProfileBook] = useState("");
-  let { profileId } = useParams();
-  console.log(profileId);
+  const [profileBook, setProfileBook] = useState("");
+  const { profileId } = useParams();
   useEffect(() => {
     showUserBooks(profileId).then((res) => setProfileBook(res));
-  }, []);
+  }, [profileId]);
 
-  console.log(profileBook);
   return (
     <div>
       {profileBook?.bookshelf?.map((book, i) => (
