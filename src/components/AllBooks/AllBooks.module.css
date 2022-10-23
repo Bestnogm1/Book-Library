@@ -1,13 +1,38 @@
-.booksContainer {
-  border: 1px solid black;
-  width: 30%;
-  font-size: 1rem;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-}
 .imgTitle {
   display: flex;
 }
-/* // ` https://www.googleapis.com/books/v1/volumes/${looking}?key=AIzaSyBh9DIgP1FAmJ0ufiaxLXCxtL6PJSZdaCA` */
+
+.AllBookMainContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.booksMainContainer {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  -webkit-box-shadow: 2px 2px 15px -5px #000000;
+  box-shadow: 2px 2px 15px -5px #000000;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.booksContainerTopHeader {
+  display: flex;
+}
+.booksContainerDescription {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.AllBookInnerContainer {
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid;
+}

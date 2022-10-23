@@ -10,7 +10,7 @@ import * as authService from "./services/authService";
 import BookDetail from "./pages/BookDetail/BookDetail";
 import ProfileDetail from "./pages/ProfileDetail/ProfileDetail";
 import * as profileService from "./services/profileService";
-import { ProfileContext } from "./components/profileContex/profileContex";
+
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const navigate = useNavigate();
@@ -33,45 +33,42 @@ const App = () => {
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
-      <ProfileContext.Provider value={"hello"}>
-        <Routes>
-          <Route path="/" element={<Landing user={user} />} />
-          <Route
-            path="/signup"
-            element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
-          />
-          <Route
-            path="/login"
-            element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
-          />
-          <Route
-            path="/profiles"
-            element={
-              user ? <Profiles profiles={profiles} /> : <Navigate to="/login" />
-            }
-          />
-          <Route
-            path="/changePassword"
-            element={
-              user ? (
-                <ChangePassword handleSignupOrLogin={handleSignupOrLogin} />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
-          <Route
-            path="/book-detail/:bookId"
-            element={
-              user ? <BookDetail user={user} /> : <Navigate to="/login" />
-            }
-          />
-          <Route
-            path="/profileDetail/:profileId"
-            element={user ? <ProfileDetail /> : <Navigate to="/login" />}
-          />
-        </Routes>
-      </ProfileContext.Provider>
+
+      <Routes>
+        <Route path="/" element={<Landing user={user} />} />
+        <Route
+          path="/signup"
+          element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
+        />
+        <Route
+          path="/login"
+          element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
+        />
+        <Route
+          path="/profiles"
+          element={
+            user ? <Profiles profiles={profiles} /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="/changePassword"
+          element={
+            user ? (
+              <ChangePassword handleSignupOrLogin={handleSignupOrLogin} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/book-detail/:bookId"
+          element={user ? <BookDetail user={user} /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/profileDetail/:profileId"
+          element={user ? <ProfileDetail /> : <Navigate to="/login" />}
+        />
+      </Routes>
     </>
   );
 };

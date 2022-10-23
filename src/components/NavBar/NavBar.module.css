@@ -1,0 +1,12 @@
+.navBar {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 7rem;
+  font-size: 1.5rem;
+  background-color: #fffbbd;
+  box-shadow: 0 8px 6px -6px black;
+}
+#navbarScroll {
+  /* height: 15rem; */
+  padding-bottom: 7rem;
+}
