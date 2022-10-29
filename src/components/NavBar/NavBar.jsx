@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { GiBookshelf } from "react-icons/gi";
 import { BsBookshelf } from "react-icons/bs";
@@ -33,10 +31,6 @@ const NavBar = ({ user, handleLogout }) => {
                   </Nav.Link>
                 </Nav>
                 <Nav>
-                  <Nav.Link href="#deets">More deets</Nav.Link>
-                  <Nav.Link eventKey={2} href="#memes">
-                    Dank memes
-                  </Nav.Link>
                   <Button
                     variant="outline-danger"
                     size="sm"

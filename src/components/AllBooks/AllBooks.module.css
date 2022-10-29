@@ -4,35 +4,124 @@
 
 .AllBookMainContainer {
   display: flex;
-  flex-direction: column;
-  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  text-align: center;
 }
 
 .booksMainContainer {
-  width: 30rem;
-  display: flex;
+  width: 22rem;
+  max-width: 302px;
   flex-direction: column;
-  border: 1px solid black;
+  border: 0.5px solid rgb(221, 211, 211);
   -webkit-box-shadow: 2px 2px 15px -5px #000000;
   box-shadow: 2px 2px 15px -5px #000000;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  background-color: white;
 }
 
 .booksContainerTopHeader {
   display: flex;
 }
+
 .booksContainerDescription {
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+  padding-top: 1em;
 }
 
-.AllBookInnerContainer {
+.NoImage {
+  font-size: 8rem;
+  width: 10rem;
+  border: 0.5px solid grey;
+}
+
+.titleAuthor {
+  padding-left: 0.8rem;
+}
+
+.inputContainerTitle {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.allBooksTitle {
+  padding-top: 1.5rem;
+}
+
+.formInput {
+  display: flex;
+  border: 1px solid;
+  justify-content: center;
   flex-direction: row;
-  border-top: 1px solid;
+}
+
+.allBooksContainer {
+  width: 100%;
+}
+.searchInputButton {
+  display: flex;
+  flex-wrap: wrap;
+}
+.searchInput {
+  width: 80%;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.searchButton {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 10.5rem;
+}
+
+.booksMainContainer {
+  width: 22rem;
+  max-width: 324px;
+  flex-direction: column;
+  border: 0.5px solid rgb(221, 211, 211);
+  -webkit-box-shadow: 2px 2px 15px -5px #000000;
+  box-shadow: 2px 2px 15px -5px #000000;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  background-color: white;
+}
+
+.testing {
+  padding-top: 1.5rem;
+  display: flex;
+  gap: 2rem;
+  align-content: center;
+  margin-right: 7;
+  /* padding: 0 5rem; */
+  /* align-items: center; */
+}
+
+.loading {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 800px) {
+  .booksMainContainer {
+    width: 32rem;
+    max-width: 502px;
+    flex-direction: column;
+    border: 0.5px solid rgb(221, 211, 211);
+    -webkit-box-shadow: 2px 2px 15px -5px #000000;
+    box-shadow: 2px 2px 15px -5px #000000;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    background-color: white;
+  }
 }

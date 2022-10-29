@@ -1,0 +1,58 @@
+.BookDetailContainer {
+  display: flex;
+  padding: 0 auto;
+  justify-content: center;
+  align-content: center;
+}
+
+.BookDetailImgTitle {
+  display: flex;
+}
+
+.BookDetailInnerContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding-top: 1.5rem;
+}
+
+.BookDetailLeft {
+  width: 40vw;
+  min-width: 450px;
+  border: 0.5px solid rgb(221, 211, 211);
+  -webkit-box-shadow: 2px 2px 15px -5px #000000;
+  box-shadow: 2px 2px 15px -5px #000000;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  background-color: white;
+}
+
+.BookDetailImgDescription {
+  overflow: hidden;
+}
+
+.BookDetailImage {
+  width: 230px;
+  height: auto;
+}
+
+.BookDetailRight {
+  border: 7px solid;
+  width: 10vw;
+  min-width: 300px;
+  border: 0.5px solid rgb(221, 211, 211);
+  -webkit-box-shadow: 2px 2px 15px -5px #000000;
+  box-shadow: 2px 2px 15px -5px #000000;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  background-color: white;
+}
+@media (max-width: 800px) {
+  .BookDetailRight {
+    margin-left: 22px;
+  }
+  .BookDetailLeft {
+    margin-left: 22px;
+  }
+}
