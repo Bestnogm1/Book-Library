@@ -42,6 +42,7 @@ function BookDetail({ user }) {
   return (
     <>
       <div className={style.BookDetailContainer}>
+        <title>{bookDetail?.title}</title>
         {bookDetail ? (
           <div className={style.BookDetailInnerContainer}>
             <div className={style.BookDetailLeft}>
@@ -53,9 +54,9 @@ function BookDetail({ user }) {
                     alt={bookDetail.title}
                   />
                 ) : (
-                  <AiOutlineFileImage />
+                  <AiOutlineFileImage className={style.NoImage} />
                 )}
-                <div>
+                <div className={style.BookDetailLabel}>
                   <h2>{bookDetail?.title}</h2>
                   {bookDetail.authors ? (
                     bookDetail?.authors.map((author, i) => (

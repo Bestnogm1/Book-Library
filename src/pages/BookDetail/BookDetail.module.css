@@ -15,10 +15,12 @@
   flex-wrap: wrap;
   gap: 30px;
   padding-top: 1.5rem;
+  height: 90vh;
 }
 
 .BookDetailLeft {
   width: 40vw;
+  /* max-height: 50vh; */
   min-width: 450px;
   border: 0.5px solid rgb(221, 211, 211);
   -webkit-box-shadow: 2px 2px 15px -5px #000000;
@@ -38,6 +40,7 @@
 }
 
 .BookDetailRight {
+  max-height: 50vh;
   border: 7px solid;
   width: 10vw;
   min-width: 300px;
@@ -47,6 +50,15 @@
   padding: 0.5rem;
   border-radius: 0.4rem;
   background-color: white;
+}
+
+.NoImage {
+  font-size: 8rem;
+  width: 10rem;
+  border: 0.5px solid grey;
+}
+.BookDetailLabel {
+  padding-left: 1rem;
 }
 @media (max-width: 800px) {
   .BookDetailRight {

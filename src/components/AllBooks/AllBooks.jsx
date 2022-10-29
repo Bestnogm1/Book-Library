@@ -24,9 +24,10 @@ function AllBooks() {
     setGetSearchValue(search);
     setSearch("");
   }
-  // md={3}
+
   return (
-    <Container>
+    <Container className={styles.AllBookMainContainer}>
+      <title> Book Store</title>
       <Row>
         <Row>
           <Col>
@@ -48,7 +49,7 @@ function AllBooks() {
             onClick={handleSubmit}
             className={styles.searchButton}
           >
-            Search for a Book
+            Search
           </Button>
         </Row>
         <Row className={styles.testing}>

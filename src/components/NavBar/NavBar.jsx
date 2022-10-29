@@ -43,16 +43,34 @@ const NavBar = ({ user, handleLogout }) => {
             </Container>
           </Navbar>
         ) : (
-          <nav>
-            <ul>
-              <li>
-                <Link to="/login">Log In</Link>
-              </li>
-              <li>
-                <Link to="/signup">Sign Up</Link>
-              </li>
-            </ul>
-          </nav>
+          <Navbar expand="lg" className={styles.navBar}>
+            <Container fluid>
+              <GiBookshelf />
+              <Navbar.Brand href="/">Book Store</Navbar.Brand>
+              <Navbar.Toggle aria-controls="navbarScroll" />
+              <Navbar.Collapse id="navbarScroll">
+                <Nav
+                  className="me-auto my-2 my-lg-0"
+                  style={{ maxHeight: "40rem" }}
+                  navbarScroll
+                >
+                  <Nav.Link href="/login">Login</Nav.Link>
+                  <Nav.Link href="/signup">signup</Nav.Link>
+                </Nav>
+                <Nav></Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+          // <nav>
+          //   <ul>
+          //     <li>
+          //       <Link to="/login">Log In</Link>
+          //     </li>
+          //     <li>
+          //       <Link to="/signup">Sign Up</Link>
+          //     </li>
+          //   </ul>
+          // </nav>
         )}
       </div>
     </div>

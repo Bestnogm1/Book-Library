@@ -1,14 +1,12 @@
+body {
+  background-color: #dfd3c3;
+}
 .imgTitle {
   display: flex;
 }
 
 .AllBookMainContainer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: relative;
-  text-align: center;
+  margin-top: 2.5rem;
 }
 
 .booksMainContainer {
@@ -63,14 +61,16 @@
 }
 
 .allBooksContainer {
-  width: 100%;
+  /* width: 100%; */
 }
+
 .searchInputButton {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
+
 .searchInput {
-  width: 80%;
+  width: 54.5vw;
   height: 2.5rem;
   font-size: 1.5rem;
   margin-right: 1rem;
@@ -80,7 +80,8 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 10.5rem;
+  width: 5rem;
+  font-size: 1;
 }
 
 .booksMainContainer {
@@ -101,8 +102,6 @@
   gap: 2rem;
   align-content: center;
   margin-right: 7;
-  /* padding: 0 5rem; */
-  /* align-items: center; */
 }
 
 .loading {
@@ -114,7 +113,7 @@
 
 @media (max-width: 800px) {
   .booksMainContainer {
-    width: 32rem;
+    width: 29rem;
     max-width: 502px;
     flex-direction: column;
     border: 0.5px solid rgb(221, 211, 211);
@@ -123,5 +122,10 @@
     padding: 0.5rem;
     border-radius: 0.4rem;
     background-color: white;
+    margin-left: 15px;
+  }
+
+  .searchInput {
+    margin-left: 15px;
   }
 }
