@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import striptags from "striptags";
+import Form from "react-bootstrap/Form";
+import Spinner from "react-bootstrap/Spinner";
+import { Badge, Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./AllBooks.module.css";
 import { AiOutlineFileImage } from "react-icons/ai";
 import * as bookService from "../../services/bookService";
-import * as Bootstrap from "react-bootstrap";
 
 const AllBooks = () => {
   const [allBooks, setAllBooks] = useState(null);
@@ -26,16 +28,16 @@ const AllBooks = () => {
   };
 
   return (
-    <Bootstrap.Container className={styles.AllBookMainContainer}>
+    <Container className={styles.AllBookMainContainer}>
       <title> Book Store</title>
-      <Bootstrap.Row>
-        <Bootstrap.Row>
-          <Bootstrap.Col>
+      <Row>
+        <Row>
+          <Col>
             <h1>All Books</h1>
-          </Bootstrap.Col>
-        </Bootstrap.Row>
-        <Bootstrap.Row md={2} className={styles.searchInputButton}>
-          <Bootstrap.Form.Control
+          </Col>
+        </Row>
+        <Row md={2} className={styles.searchInputButton}>
+          <Form.Control
             className={styles.searchInput}
             type="text"
             placeholder="Search For A Book"
@@ -44,29 +46,24 @@ const AllBooks = () => {
             autoComplete="off"
             onChange={(e) => setSearch(e.target.value)}
           />
-          <Bootstrap.Button
+          <Button
             type="submit"
             onClick={handleSubmit}
             className={styles.searchButton}
           >
             Search
-          </Bootstrap.Button>
-        </Bootstrap.Row>
-
-        <Bootstrap.Row className={styles.testing}>
+          </Button>
+        </Row>
+        <Row className={styles.testing}>
           {allBooks ? (
-            allBooks?.map((book, index) => {
-              const title = book?.volumeInfo.title;
-              const description = book?.volumeInfo.description;
-              const image = book?.volumeInfo.imageLinks?.smallThumbnail;
-              const authors = book?.volumeInfo.authors;
-              const bookId = book?.id;
+            allBooks?.map(({ volumeInfo, id }, index) => {
+              const title = volumeInfo.title;
+              const description = volumeInfo.description;
+              const image = volumeInfo.imageLinks?.smallThumbnail;
+              const authors = volumeInfo.authors;
 
               return (
-                <Bootstrap.Row
-                  key={index}
-                  className={styles.booksMainContainer}
-                >
+                <Row key={index} className={styles.booksMainContainer}>
                   <div>
                     <div>
                       <div className={styles.booksContainerTopHeader}>
@@ -93,15 +90,9 @@ const AllBooks = () => {
                               <h5> no author</h5>
                             )}
                           </div>
-                          <Link
-                            key={bookId}
-                            state={{ book }}
-                            to={`/book-detail/${bookId}`}
-                          >
+                          <Link key={id} to={`/book-detail/${id}`}>
                             <h5>
-                              <Bootstrap.Badge size="small">
-                                Book Detail
-                              </Bootstrap.Badge>
+                              <Badge size="small">Book Detail</Badge>
                             </h5>
                           </Link>
                         </div>
@@ -117,17 +108,19 @@ const AllBooks = () => {
                       )}
                     </div>
                   </div>
-                </Bootstrap.Row>
+                </Row>
               );
             })
           ) : (
-            <div className={styles.loading}>
-              <Bootstrap.Spinner animation="border" variant="primary" />
-            </div>
+            <>
+              <div className={styles.loading}>
+                <Spinner animation="border" variant="primary" />
+              </div>
+            </>
           )}
-        </Bootstrap.Row>
-      </Bootstrap.Row>
-    </Bootstrap.Container>
+        </Row>
+      </Row>
+    </Container>
   );
 };
 

@@ -5,9 +5,9 @@ import { showUserBooks } from "../../services/profileService";
 import striptags from "striptags";
 import { AiOutlineFileImage } from "react-icons/ai";
 import style from "./BookDetail.module.css";
-import { Badge, Button } from "react-bootstrap";
+import { Badge, Button, Spinner } from "react-bootstrap";
 
-function BookDetail({ user }) {
+const BookDetail = ({ user }) => {
   const [bookDetail, setBookDetail] = useState("");
   const [profile, setProfile] = useState(null);
   const { bookId } = useParams();
@@ -19,25 +19,24 @@ function BookDetail({ user }) {
   useEffect(() => {
     showUserBooks(user?.profile).then((res) => setProfile(res?.bookshelf));
   }, []);
-  function addBookToCollection() {
+
+  const addBookToCollection = () => {
     const newBook = {
       authors: bookDetail.authors,
       bookId: bookId,
     };
     setProfile([...profile, newBook]);
     bookService.addBookToCollection(bookId);
-  }
+  };
 
-  function doesUserHaveBook() {
+  const doesUserHaveBook = () => {
     const userHasBook = profile.findIndex(
       (profileBook) => profileBook?.bookId === bookId
     );
-    if (userHasBook === -1) {
-      return false;
-    }
+    if (userHasBook === -1) return false;
     return true;
-  }
-  console.log(user);
+  };
+
   return (
     <>
       <div className={style.BookDetailContainer}>
@@ -92,10 +91,16 @@ function BookDetail({ user }) {
               <Button size="sm"> add</Button>
             </div>
           </div>
-        ) : null}
+        ) : (
+          <>
+            <div>
+              <Spinner animation="border" variant="primary" />
+            </div>
+          </>
+        )}
       </div>
     </>
   );
-}
+};
 
 export default BookDetail;

@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { handleDeleteBook, showUserBooks } from "../../services/profileService";
-import { Badge, Spinner } from "react-bootstrap";
+import { Badge, Spinner, Container, Row, Col } from "react-bootstrap";
 import { AiOutlineFileImage } from "react-icons/ai";
-import { Container } from "react-bootstrap";
-import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
-import styles from "../../components/AllBooks/AllBooks.module.css";
 import striptags from "striptags";
+import styles from "../../components/AllBooks/AllBooks.module.css";
 
-function ProfileDetail({ user }) {
+const ProfileDetail = ({ user }) => {
   const [profileBook, setProfileBook] = useState("");
   const { profileId } = useParams();
 
@@ -26,17 +23,15 @@ function ProfileDetail({ user }) {
           <title>{profileBook.name} Books</title>
           <Col>
             <h1>{profileBook.name} Books</h1>
-            {isThisTheUser ? (
-              profileBook ? (
-                profileBook.bookshelf.length === 0 ? (
-                  <Link to={`/`}>
-                    <h1> add a book</h1>
-                  </Link>
-                ) : null
+            {profileBook ? (
+              isThisTheUser && profileBook.bookshelf.length === 0 ? (
+                <Link to={`/`}>
+                  <h1> add a book</h1>
+                </Link>
+              ) : profileBook.bookshelf.length === 0 ? (
+                <h1> has no book</h1>
               ) : null
-            ) : (
-              <h1> has no book added yet</h1>
-            )}
+            ) : null}
           </Col>
         </Row>
         <Row className={styles.testing}>
@@ -70,7 +65,11 @@ function ProfileDetail({ user }) {
                               <h5> no author</h5>
                             )}
                           </div>
-                          <Link key={book.bookId} state={{ book }} to={`/`}>
+                          <Link
+                            key={book.bookId}
+                            state={{ book }}
+                            to={`/book-detail/${book.bookId}`}
+                          >
                             <Badge size="small">Book Detail</Badge>
                           </Link>
                           {isThisTheUser ? (
@@ -112,6 +111,6 @@ function ProfileDetail({ user }) {
       </Row>
     </Container>
   );
-}
+};
 
 export default ProfileDetail;

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Profiles = ({ profiles }) => {
+  console.log(profiles);
   return (
     <>
       <title>All Profiles</title>
