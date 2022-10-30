@@ -1,40 +1,41 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import styles from './ChangePasswordForm.module.css'
-import * as authService from '../../services/authService'
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "./ChangePasswordForm.module.css";
+import * as authService from "../../services/authService";
+import * as Bootstrap from "react-bootstrap";
 
-const ChangePasswordForm = props => {
-  const navigate = useNavigate()
+const ChangePasswordForm = (props) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    pw: '',
-    newPw: '',
-    newPwConf: '',
-  })
+    pw: "",
+    newPw: "",
+    newPwConf: "",
+  });
 
-  const handleChange = e => {
-    props.updateMessage('')
+  const handleChange = (e) => {
+    props.updateMessage("");
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
-  const handleSubmit = async e => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await authService.changePassword(formData)
-      props.handleSignupOrLogin()
-      navigate('/')
+      await authService.changePassword(formData);
+      props.handleSignupOrLogin();
+      navigate("/");
     } catch (err) {
-      props.updateMessage(err.message)
+      props.updateMessage(err.message);
     }
-  }
+  };
 
-  const { pw, newPw, newPwConf } = formData
+  const { pw, newPw, newPwConf } = formData;
 
   const isFormInvalid = () => {
-    return !(pw && newPw && newPw === newPwConf)
-  }
+    return !(pw && newPw && newPw === newPwConf);
+  };
 
   return (
     <form
@@ -43,8 +44,10 @@ const ChangePasswordForm = props => {
       className={styles.container}
     >
       <div className={styles.inputContainer}>
-        <label htmlFor="password" className={styles.label}>Current Password</label>
-        <input
+        <label htmlFor="password" className={styles.label}>
+          Current Password
+        </label>
+        <Bootstrap.Form.Control
           type="password"
           autoComplete="off"
           id="password"
@@ -88,7 +91,7 @@ const ChangePasswordForm = props => {
         </Link>
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default ChangePasswordForm
+export default ChangePasswordForm;

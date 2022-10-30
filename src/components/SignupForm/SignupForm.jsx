@@ -43,6 +43,7 @@ const SignupForm = (props) => {
       onSubmit={handleSubmit}
       className={styles.container}
     >
+      <title> Signup </title>
       <div className={styles.inputContainer}>
         <label htmlFor="name" className={styles.label}>
           Name

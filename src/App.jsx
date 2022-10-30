@@ -64,6 +64,10 @@ const App = () => {
           path="/book-detail/:bookId"
           element={user ? <BookDetail user={user} /> : <Navigate to="/login" />}
         />
+        {/* <Route
+          path="/book-detail/:bookId"
+          element={user ? <BookDetail user={user} /> : <Navigate to="/login" />}
+        /> */}
         <Route
           path="/profileDetail/:profileId"
           element={

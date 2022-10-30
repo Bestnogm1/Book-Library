@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import * as bookService from "../../services/bookService";
 import { showUserBooks } from "../../services/profileService";
 import striptags from "striptags";
 import { AiOutlineFileImage } from "react-icons/ai";
 import style from "./BookDetail.module.css";
-import { Button } from "react-bootstrap";
+import { Badge, Button } from "react-bootstrap";
 
 function BookDetail({ user }) {
   const [bookDetail, setBookDetail] = useState("");
@@ -19,7 +19,6 @@ function BookDetail({ user }) {
   useEffect(() => {
     showUserBooks(user?.profile).then((res) => setProfile(res?.bookshelf));
   }, []);
-
   function addBookToCollection() {
     const newBook = {
       authors: bookDetail.authors,
@@ -38,7 +37,7 @@ function BookDetail({ user }) {
     }
     return true;
   }
-
+  console.log(user);
   return (
     <>
       <div className={style.BookDetailContainer}>
@@ -68,7 +67,9 @@ function BookDetail({ user }) {
                     <h5> no author</h5>
                   )}
                   {profile && doesUserHaveBook() ? (
-                    <h6> Book is in your shelf</h6>
+                    <Link to={`/profileDetail/${user.profile}`}>
+                      <Badge bg="success">In Your Bookshelf</Badge>
+                    </Link>
                   ) : (
                     <Button onClick={() => addBookToCollection()}>
                       Add to my shelf
@@ -87,7 +88,6 @@ function BookDetail({ user }) {
             </div>
             <div className={style.BookDetailRight}>
               <h1> Reviews</h1>
-              <h5> Reviews </h5>
               <input type="text" />
               <Button size="sm"> add</Button>
             </div>

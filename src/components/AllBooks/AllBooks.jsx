@@ -1,41 +1,41 @@
 import React, { useState, useEffect } from "react";
-import styles from "./AllBooks.module.css";
-import * as bookService from "../../services/bookService";
-import { Link } from "react-router-dom";
-import { Button, Col, Container, Row } from "react-bootstrap";
-import { AiOutlineFileImage } from "react-icons/ai";
-import Spinner from "react-bootstrap/Spinner";
-import Form from "react-bootstrap/Form";
 import striptags from "striptags";
+import { Link } from "react-router-dom";
+import styles from "./AllBooks.module.css";
+import { AiOutlineFileImage } from "react-icons/ai";
+import * as bookService from "../../services/bookService";
+import * as Bootstrap from "react-bootstrap";
 
-function AllBooks() {
-  const [books, setBooks] = useState(null);
+const AllBooks = () => {
+  const [allBooks, setAllBooks] = useState(null);
   const [search, setSearch] = useState("");
   const [getSearchValue, setGetSearchValue] = useState(
     "Cracking the coding interview"
   );
 
   useEffect(() => {
-    bookService.searchForAllBook(getSearchValue).then((data) => setBooks(data));
+    bookService
+      .searchForAllBook(getSearchValue)
+      .then((data) => setAllBooks(data));
   }, [getSearchValue]);
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setGetSearchValue(search);
     setSearch("");
-  }
+  };
 
   return (
-    <Container className={styles.AllBookMainContainer}>
+    <Bootstrap.Container className={styles.AllBookMainContainer}>
       <title> Book Store</title>
-      <Row>
-        <Row>
-          <Col>
+      <Bootstrap.Row>
+        <Bootstrap.Row>
+          <Bootstrap.Col>
             <h1>All Books</h1>
-          </Col>
-        </Row>
-        <Row md={2} className={styles.searchInputButton}>
-          <Form.Control
+          </Bootstrap.Col>
+        </Bootstrap.Row>
+        <Bootstrap.Row md={2} className={styles.searchInputButton}>
+          <Bootstrap.Form.Control
             className={styles.searchInput}
             type="text"
             placeholder="Search For A Book"
@@ -44,24 +44,29 @@ function AllBooks() {
             autoComplete="off"
             onChange={(e) => setSearch(e.target.value)}
           />
-          <Button
+          <Bootstrap.Button
             type="submit"
             onClick={handleSubmit}
             className={styles.searchButton}
           >
             Search
-          </Button>
-        </Row>
-        <Row className={styles.testing}>
-          {books ? (
-            books?.map((book, index) => {
+          </Bootstrap.Button>
+        </Bootstrap.Row>
+
+        <Bootstrap.Row className={styles.testing}>
+          {allBooks ? (
+            allBooks?.map((book, index) => {
               const title = book?.volumeInfo.title;
               const description = book?.volumeInfo.description;
               const image = book?.volumeInfo.imageLinks?.smallThumbnail;
               const authors = book?.volumeInfo.authors;
               const bookId = book?.id;
+
               return (
-                <Row key={index} className={styles.booksMainContainer}>
+                <Bootstrap.Row
+                  key={index}
+                  className={styles.booksMainContainer}
+                >
                   <div>
                     <div>
                       <div className={styles.booksContainerTopHeader}>
@@ -93,7 +98,11 @@ function AllBooks() {
                             state={{ book }}
                             to={`/book-detail/${bookId}`}
                           >
-                            <Button size="small">Book detail</Button>
+                            <h5>
+                              <Bootstrap.Badge size="small">
+                                Book Detail
+                              </Bootstrap.Badge>
+                            </h5>
                           </Link>
                         </div>
                       </div>
@@ -108,20 +117,18 @@ function AllBooks() {
                       )}
                     </div>
                   </div>
-                </Row>
+                </Bootstrap.Row>
               );
             })
           ) : (
-            <>
-              <div className={styles.loading}>
-                <Spinner animation="border" variant="primary" />
-              </div>
-            </>
+            <div className={styles.loading}>
+              <Bootstrap.Spinner animation="border" variant="primary" />
+            </div>
           )}
-        </Row>
-      </Row>
-    </Container>
+        </Bootstrap.Row>
+      </Bootstrap.Row>
+    </Bootstrap.Container>
   );
-}
+};
 
 export default AllBooks;

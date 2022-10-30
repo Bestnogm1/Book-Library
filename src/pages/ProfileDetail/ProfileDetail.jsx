@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { showUserBooks } from "../../services/profileService";
-import { Button, Spinner } from "react-bootstrap";
+import { handleDeleteBook, showUserBooks } from "../../services/profileService";
+import { Badge, Spinner } from "react-bootstrap";
 import { AiOutlineFileImage } from "react-icons/ai";
 import { Container } from "react-bootstrap";
 import { Row } from "react-bootstrap";
@@ -16,21 +16,32 @@ function ProfileDetail({ user }) {
   useEffect(() => {
     showUserBooks(profileId).then((res) => setProfileBook(res));
   }, [profileId]);
-  console.log(user.profile, "user");
-  console.log(profileId, "profileId");
-  const isThisTheUSer = user.profile === profileId ? true : false;
-  console.log(profileBook, "profileBook");
+
+  const isThisTheUser = user.profile === profileId ? true : false;
+  console.log(profileBook.bookshelf);
   return (
     <Container>
       <Row>
         <Row>
+          <title>{profileBook.name} Books</title>
           <Col>
             <h1>{profileBook.name} Books</h1>
+            {isThisTheUser ? (
+              profileBook ? (
+                profileBook.bookshelf.length === 0 ? (
+                  <Link to={`/`}>
+                    <h1> add a book</h1>
+                  </Link>
+                ) : null
+              ) : null
+            ) : (
+              <h1> has no book added yet</h1>
+            )}
           </Col>
         </Row>
         <Row className={styles.testing}>
           {profileBook ? (
-            profileBook?.bookshelf?.map((book, index) => {
+            profileBook.bookshelf.map((book, index) => {
               return (
                 <Row key={index} className={styles.booksMainContainer}>
                   <div>
@@ -59,18 +70,20 @@ function ProfileDetail({ user }) {
                               <h5> no author</h5>
                             )}
                           </div>
-                          <Link
-                            key={book.bookId}
-                            state={{ book }}
-                            to={`/book-detail/${book.bookId}`}
-                          >
-                            <Button size="small">Book detail</Button>
+                          <Link key={book.bookId} state={{ book }} to={`/`}>
+                            <Badge size="small">Book Detail</Badge>
                           </Link>
-
-                          {isThisTheUSer ? (
-                            <Button size="sm" variant="danger">
-                              delete book
-                            </Button>
+                          {isThisTheUser ? (
+                            <Link to={`/`}>
+                              <Badge
+                                bg="danger"
+                                onClick={() =>
+                                  handleDeleteBook(book._id, profileId)
+                                }
+                              >
+                                Remove Book
+                              </Badge>
+                            </Link>
                           ) : null}
                         </div>
                       </div>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 const Profiles = ({ profiles }) => {
   return (
     <>
+      <title>All Profiles</title>
       <h1>Hello. This is a list of all the profiles.</h1>
       {profiles.length ? (
         <div>

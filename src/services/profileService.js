@@ -20,4 +20,15 @@ async function showUserBooks(profileId) {
   return response.json();
 }
 
-export { getAllProfiles, showUserBooks };
+async function handleDeleteBook(bookId, userId) {
+  const response = await fetch(`${BASE_URL}/deleteBook/${userId}`, {
+    method: "DELETE",
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    },
+    body: JSON.stringify({ booksId: bookId }),
+  });
+}
+
+export { getAllProfiles, showUserBooks, handleDeleteBook };

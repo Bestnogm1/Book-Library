@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -24,7 +23,7 @@ const NavBar = ({ user, handleLogout }) => {
                   style={{ maxHeight: "40rem" }}
                   navbarScroll
                 >
-                  <Nav.Link href="/profiles">View Other Profiles</Nav.Link>
+                  <Nav.Link href="/profiles"> Other Profiles</Nav.Link>
                   <Nav.Link href={`/profileDetail/${user.profile}`}>
                     <BsBookshelf />
                     {user.name} Books

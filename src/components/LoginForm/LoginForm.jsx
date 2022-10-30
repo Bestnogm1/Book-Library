@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.css";
 import * as authService from "../../services/authService";
+import * as Bootstrap from "react-bootstrap";
 
 const LoginForm = (props) => {
   const [formData, setFormData] = useState({
@@ -27,16 +28,17 @@ const LoginForm = (props) => {
   };
 
   return (
-    <form
+    <Bootstrap.Form
       autoComplete="off"
       onSubmit={handleSubmit}
       className={styles.container}
     >
+      <title> Login </title>
       <div className={styles.inputContainer}>
-        <label htmlFor="email" className={styles.label}>
+        <Bootstrap.Form.Label htmlFor="email" className={styles.label}>
           Email
-        </label>
-        <input
+        </Bootstrap.Form.Label>
+        <Bootstrap.Form.Control
           type="text"
           autoComplete="off"
           id="email"
@@ -46,10 +48,10 @@ const LoginForm = (props) => {
         />
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor="password" className={styles.label}>
+        <Bootstrap.Form.Label htmlFor="password" className={styles.label}>
           Password
-        </label>
-        <input
+        </Bootstrap.Form.Label>
+        <Bootstrap.Form.Control
           type="password"
           autoComplete="off"
           id="password"
@@ -59,12 +61,14 @@ const LoginForm = (props) => {
         />
       </div>
       <div>
-        <button className={styles.button}>Log In</button>
+        <Bootstrap.Button type="submit" className={styles.button}>
+          Log In
+        </Bootstrap.Button>
         <Link to="/">
-          <button>Cancel</button>
+          <Bootstrap.Button>Cancel</Bootstrap.Button>
         </Link>
       </div>
-    </form>
+    </Bootstrap.Form>
   );
 };
 
