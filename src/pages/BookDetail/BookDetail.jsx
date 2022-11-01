@@ -6,6 +6,7 @@ import striptags from "striptags";
 import { AiOutlineFileImage } from "react-icons/ai";
 import style from "./BookDetail.module.css";
 import { Badge, Button, Spinner } from "react-bootstrap";
+import Reviews from "../../components/Reviews/Reviews";
 
 const BookDetail = ({ user }) => {
   const [bookDetail, setBookDetail] = useState("");
@@ -86,9 +87,7 @@ const BookDetail = ({ user }) => {
               </div>
             </div>
             <div className={style.BookDetailRight}>
-              <h1> Reviews</h1>
-              <input type="text" />
-              <Button size="sm"> add</Button>
+              <Reviews bookId={bookId} user={user} />
             </div>
           </div>
         ) : (

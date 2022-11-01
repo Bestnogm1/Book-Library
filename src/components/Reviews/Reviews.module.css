@@ -1,0 +1,21 @@
+.reviewMainComponent {
+  height: 24rem;
+  overflow: scroll;
+}
+.reviewComponent {
+  /* background-color: red; */
+  border: 0.5px solid black;
+  height: 80px;
+  margin-top: 10px;
+  overflow: auto;
+  padding: 10px;
+}
+
+.reviewName {
+  border-bottom: 0.5px solid black;
+}
+
+.reviewReview {
+  inline-size: 250px;
+  overflow-wrap: break-word;
+}

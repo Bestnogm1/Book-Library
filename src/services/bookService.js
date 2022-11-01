@@ -1,8 +1,8 @@
 import * as tokenService from "../services/tokenService";
-const baseUrl = `http://localhost:3001/api/`;
+const baseUrl = `http://localhost:3001/api/books`;
 
 export async function searchForAllBook(bookTitle) {
-  const response = await fetch(`${baseUrl}books/getAllSearchedBook`, {
+  const response = await fetch(`${baseUrl}/getAllSearchedBook`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -26,7 +26,7 @@ export async function getBookById(_bookId) {
 }
 
 export async function getASingleBookId(bookId) {
-  const response = await fetch(`${baseUrl}books/getABookByID`, {
+  const response = await fetch(`${baseUrl}/getABookByID`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -37,7 +37,7 @@ export async function getASingleBookId(bookId) {
   return response.json();
 }
 export async function addBookToCollection(bookId) {
-  const response = await fetch(`${baseUrl}books/addBookToCollection`, {
+  const response = await fetch(`${baseUrl}/addBookToCollection`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -45,4 +45,15 @@ export async function addBookToCollection(bookId) {
     },
     body: JSON.stringify({ bookId: bookId }),
   });
+}
+
+export async function getAllBooks() {
+  const response = await fetch(`${baseUrl}/getAllBooks`, {
+    method: "GET",
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    },
+  });
+  return response.json();
 }
