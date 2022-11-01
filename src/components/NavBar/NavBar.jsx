@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { GiBookshelf } from "react-icons/gi";
 import { BsBookshelf } from "react-icons/bs";
 import { CgLogOut } from "react-icons/cg";
+
 const NavBar = ({ user, handleLogout }) => {
   return (
     <div className={styles.navBarMainBody}>
@@ -15,7 +16,8 @@ const NavBar = ({ user, handleLogout }) => {
           <Navbar expand="lg" className={styles.navBar}>
             <Container fluid>
               <GiBookshelf />
-              <Navbar.Brand href="/">Book Store</Navbar.Brand>
+
+              <Navbar.Brand href="/">Book Library</Navbar.Brand>
               <Navbar.Toggle aria-controls="navbarScroll" />
               <Navbar.Collapse id="navbarScroll">
                 <Nav
@@ -45,7 +47,7 @@ const NavBar = ({ user, handleLogout }) => {
           <Navbar expand="lg" className={styles.navBar}>
             <Container fluid>
               <GiBookshelf />
-              <Navbar.Brand href="/">Book Store</Navbar.Brand>
+              <Navbar.Brand href="/">Book Library</Navbar.Brand>
               <Navbar.Toggle aria-controls="navbarScroll" />
               <Navbar.Collapse id="navbarScroll">
                 <Nav
@@ -54,22 +56,12 @@ const NavBar = ({ user, handleLogout }) => {
                   navbarScroll
                 >
                   <Nav.Link href="/login">Login</Nav.Link>
-                  <Nav.Link href="/signup">signup</Nav.Link>
+                  <Nav.Link href="/signup">Signup </Nav.Link>
                 </Nav>
                 <Nav></Nav>
               </Navbar.Collapse>
             </Container>
           </Navbar>
-          // <nav>
-          //   <ul>
-          //     <li>
-          //       <Link to="/login">Log In</Link>
-          //     </li>
-          //     <li>
-          //       <Link to="/signup">Sign Up</Link>
-          //     </li>
-          //   </ul>
-          // </nav>
         )}
       </div>
     </div>

@@ -23,9 +23,7 @@ const Reviews = ({ bookId, user }) => {
     reviewService.createAReview({ ...newReview, ownedBy: user.profile });
     setInputData("");
   };
-  // const isThisTheUser = user.profile === profileId ? true : false;
 
-  console.log(getAllReviews);
   const routeToUserProfile = (review) => {
     if (review.ownedBy._id) return `/profileDetail/${review.ownedBy._id}`;
     return `/profileDetail/${user.profile}`;

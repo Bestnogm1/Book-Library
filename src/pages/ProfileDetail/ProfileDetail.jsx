@@ -15,14 +15,17 @@ const ProfileDetail = ({ user }) => {
   }, [profileId]);
 
   const isThisTheUser = user.profile === profileId ? true : false;
-  console.log(profileBook.bookshelf);
+
   return (
     <Container>
       <Row>
         <Row>
           <title>{profileBook.name} Books</title>
           <Col>
-            <h1>{profileBook.name} Books</h1>
+            <div className={styles.booksMainContainerTitle}>
+              <h3>{profileBook.name} Books</h3>
+            </div>
+
             {profileBook ? (
               isThisTheUser && profileBook.bookshelf.length === 0 ? (
                 <Link to={`/`}>
@@ -34,7 +37,7 @@ const ProfileDetail = ({ user }) => {
             ) : null}
           </Col>
         </Row>
-        <Row className={styles.testing}>
+        <Row className={styles.booksContainer}>
           {profileBook ? (
             profileBook.bookshelf.map((book, index) => {
               return (

@@ -28,47 +28,49 @@ const LoginForm = (props) => {
   };
 
   return (
-    <Bootstrap.Form
-      autoComplete="off"
-      onSubmit={handleSubmit}
-      className={styles.container}
-    >
-      <title> Login </title>
-      <div className={styles.inputContainer}>
-        <Bootstrap.Form.Label htmlFor="email" className={styles.label}>
-          Email
-        </Bootstrap.Form.Label>
-        <Bootstrap.Form.Control
-          type="text"
-          autoComplete="off"
-          id="email"
-          value={formData.email}
-          name="email"
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.inputContainer}>
-        <Bootstrap.Form.Label htmlFor="password" className={styles.label}>
-          Password
-        </Bootstrap.Form.Label>
-        <Bootstrap.Form.Control
-          type="password"
-          autoComplete="off"
-          id="password"
-          value={formData.pw}
-          name="pw"
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <Bootstrap.Button type="submit" className={styles.button}>
-          Log In
-        </Bootstrap.Button>
-        <Link to="/">
-          <Bootstrap.Button>Cancel</Bootstrap.Button>
-        </Link>
-      </div>
-    </Bootstrap.Form>
+    <div className={styles.loginFormMainContainer}>
+      <Bootstrap.Form
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        className={styles.container}
+      >
+        <title> Login </title>
+        <div className={styles.inputContainer}>
+          <Bootstrap.Form.Label htmlFor="email" className={styles.label}>
+            Email
+          </Bootstrap.Form.Label>
+          <Bootstrap.Form.Control
+            type="text"
+            autoComplete="off"
+            id="email"
+            value={formData.email}
+            name="email"
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <Bootstrap.Form.Label htmlFor="password" className={styles.label}>
+            Password
+          </Bootstrap.Form.Label>
+          <Bootstrap.Form.Control
+            type="password"
+            autoComplete="off"
+            id="password"
+            value={formData.pw}
+            name="pw"
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <Bootstrap.Button type="submit" className={styles.button}>
+            Log In
+          </Bootstrap.Button>
+          <Link to="/">
+            <Bootstrap.Button>Cancel</Bootstrap.Button>
+          </Link>
+        </div>
+      </Bootstrap.Form>
+    </div>
   );
 };
 

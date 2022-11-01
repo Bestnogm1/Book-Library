@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
+  padding-top: 10px;
 }
 
 .label,
@@ -13,4 +14,12 @@
 
 .inputContainer {
   margin-bottom: 1rem;
+}
+.signupFormMainContainer {
+  min-width: 450px;
+  min-height: 250px;
+  border: 0.5px solid rgb(221, 211, 211);
+  -webkit-box-shadow: 2px 2px 15px -5px #000000;
+  box-shadow: 1px 2px 10px -5px #000000;
+  background-color: #f0ece2;
 }

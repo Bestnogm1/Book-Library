@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./SignupForm.module.css";
 import * as authService from "../../services/authService";
+import * as Bootstrap from "react-bootstrap";
 
 const SignupForm = (props) => {
   const navigate = useNavigate();
@@ -38,73 +39,79 @@ const SignupForm = (props) => {
   };
 
   return (
-    <form
-      autoComplete="off"
-      onSubmit={handleSubmit}
-      className={styles.container}
-    >
-      <title> Signup </title>
-      <div className={styles.inputContainer}>
-        <label htmlFor="name" className={styles.label}>
-          Name
-        </label>
-        <input
-          type="text"
-          autoComplete="off"
-          id="name"
-          value={name}
-          name="name"
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="email" className={styles.label}>
-          Email
-        </label>
-        <input
-          type="text"
-          autoComplete="off"
-          id="email"
-          value={email}
-          name="email"
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="password" className={styles.label}>
-          Password
-        </label>
-        <input
-          type="password"
-          autoComplete="off"
-          id="password"
-          value={password}
-          name="password"
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="confirm" className={styles.label}>
-          Confirm Password
-        </label>
-        <input
-          type="password"
-          autoComplete="off"
-          id="confirm"
-          value={passwordConf}
-          name="passwordConf"
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.inputContainer}>
-        <button disabled={isFormInvalid()} className={styles.button}>
-          Sign Up
-        </button>
-        <Link to="/">
-          <button>Cancel</button>
-        </Link>
-      </div>
-    </form>
+    <div className={styles.signupFormMainContainer}>
+      <form
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        className={styles.container}
+      >
+        <title> Signup </title>
+        <div className={styles.inputContainer}>
+          <label htmlFor="name" className={styles.label}>
+            Name
+          </label>
+          <Bootstrap.Form.Control
+            type="text"
+            autoComplete="off"
+            id="name"
+            value={name}
+            name="name"
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <label htmlFor="email" className={styles.label}>
+            Email
+          </label>
+          <Bootstrap.Form.Control
+            type="text"
+            autoComplete="off"
+            id="email"
+            value={email}
+            name="email"
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <label htmlFor="password" className={styles.label}>
+            Password
+          </label>
+          <Bootstrap.Form.Control
+            type="password"
+            autoComplete="off"
+            id="password"
+            value={password}
+            name="password"
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <label htmlFor="confirm" className={styles.label}>
+            Confirm Password
+          </label>
+          <Bootstrap.Form.Control
+            type="password"
+            autoComplete="off"
+            id="confirm"
+            value={passwordConf}
+            name="passwordConf"
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <Bootstrap.Button
+            disabled={isFormInvalid()}
+            type="submit"
+            className={styles.button}
+          >
+            Sign Up
+          </Bootstrap.Button>
+          <Link to="/">
+            <Bootstrap.Button>Cancel</Bootstrap.Button>
+          </Link>
+        </div>
+      </form>
+    </div>
   );
 };
 

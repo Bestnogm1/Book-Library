@@ -29,7 +29,7 @@ const AllBooks = () => {
 
   return (
     <Container className={styles.AllBookMainContainer}>
-      <title> Book Store</title>
+      <title> Book Library</title>
       <Row>
         <Row>
           <Col>
@@ -54,14 +54,13 @@ const AllBooks = () => {
             Search
           </Button>
         </Row>
-        <Row className={styles.testing}>
+        <Row className={styles.booksContainer}>
           {allBooks ? (
             allBooks?.map(({ volumeInfo, id }, index) => {
               const title = volumeInfo.title;
               const description = volumeInfo.description;
               const image = volumeInfo.imageLinks?.smallThumbnail;
               const authors = volumeInfo.authors;
-
               return (
                 <Row key={index} className={styles.booksMainContainer}>
                   <div>

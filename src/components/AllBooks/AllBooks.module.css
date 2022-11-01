@@ -60,13 +60,8 @@ body {
   flex-direction: row;
 }
 
-.allBooksContainer {
-  /* width: 100%; */
-}
-
 .searchInputButton {
   display: flex;
-  /* flex-wrap: wrap; */
 }
 
 .searchInput {
@@ -96,7 +91,7 @@ body {
   background-color: white;
 }
 
-.testing {
+.booksContainer {
   padding-top: 1.5rem;
   display: flex;
   gap: 2rem;
@@ -128,4 +123,7 @@ body {
   .searchInput {
     margin-left: 15px;
   }
+}
+.booksMainContainerTitle {
+  padding-top: 1.5rem;
 }
