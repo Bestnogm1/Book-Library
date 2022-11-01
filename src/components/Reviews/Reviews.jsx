@@ -8,6 +8,7 @@ import style from "./Reviews.module.css";
 const Reviews = ({ bookId, user }) => {
   const [getAllReviews, setGetAllReviews] = useState(null);
   const [inputData, setInputData] = useState("");
+
   useEffect(() => {
     reviewService.getAllReviews().then((res) => setGetAllReviews(res));
   }, []);
@@ -28,6 +29,7 @@ const Reviews = ({ bookId, user }) => {
     if (review.ownedBy._id) return `/profileDetail/${review.ownedBy._id}`;
     return `/profileDetail/${user.profile}`;
   };
+
   return (
     <>
       <div>
@@ -45,24 +47,26 @@ const Reviews = ({ bookId, user }) => {
         <div className={style.reviewMainComponent}>
           {getAllReviews &&
             getAllReviews?.map((review, index) => (
-              <div key={index} className={style.reviewComponent}>
-                <div>
-                  {review?.bookId === bookId ? (
+              <>
+                {review?.bookId === bookId ? (
+                  <div key={index} className={style.reviewComponent}>
                     <div>
-                      <Link to={routeToUserProfile(review)}>
-                        <div className={style.reviewName}>
-                          <h6>
-                            <Badge>{review.ownedBy.name}</Badge>
-                          </h6>
+                      <div>
+                        <Link to={routeToUserProfile(review)}>
+                          <div className={style.reviewName}>
+                            <h6>
+                              <Badge>{review.ownedBy.name}</Badge>
+                            </h6>
+                          </div>
+                        </Link>
+                        <div className={style.reviewReview}>
+                          <h6>{review.reviews}</h6>
                         </div>
-                      </Link>
-                      <div className={style.reviewReview}>
-                        <h6>{review.reviews}</h6>
                       </div>
                     </div>
-                  ) : null}
-                </div>
-              </div>
+                  </div>
+                ) : null}
+              </>
             ))}
         </div>
       </div>

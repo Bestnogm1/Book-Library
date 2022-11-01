@@ -29,7 +29,7 @@ const ProfileDetail = ({ user }) => {
             {profileBook ? (
               isThisTheUser && profileBook.bookshelf.length === 0 ? (
                 <Link to={`/`}>
-                  <h1> add a book</h1>
+                  <h4> Add a book</h4>
                 </Link>
               ) : profileBook.bookshelf.length === 0 ? (
                 <h1> has no book</h1>
