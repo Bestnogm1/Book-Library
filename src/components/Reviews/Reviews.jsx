@@ -45,24 +45,22 @@ const Reviews = ({ bookId, user }) => {
         <div className={style.reviewMainComponent}>
           {getAllReviews &&
             getAllReviews?.map((review, index) => (
-              <div key={index} className={style.reviewComponent}>
-                <div>
-                  {review?.bookId === bookId ? (
-                    <div>
-                      <Link to={routeToUserProfile(review)}>
-                        <div className={style.reviewName}>
-                          <h6>
-                            <Badge>{review.ownedBy.name}</Badge>
-                          </h6>
-                        </div>
-                      </Link>
-                      <div className={style.reviewReview}>
-                        <h6>{review.reviews}</h6>
+              <>
+                {review?.bookId === bookId ? (
+                  <div key={index} className={style.reviewComponent}>
+                    <Link to={routeToUserProfile(review)}>
+                      <div className={style.reviewName}>
+                        <h6>
+                          <Badge>{review.ownedBy.name}</Badge>
+                        </h6>
                       </div>
+                    </Link>
+                    <div className={style.reviewReview}>
+                      <h6>{review.reviews}</h6>
                     </div>
-                  ) : null}
-                </div>
-              </div>
+                  </div>
+                ) : null}
+              </>
             ))}
         </div>
       </div>
