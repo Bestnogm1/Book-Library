@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import * as reviewService from "../../services/reviewService";
-import { Badge, Button, Spinner } from "react-bootstrap";
+import { Badge, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import style from "./Reviews.module.css";
 
