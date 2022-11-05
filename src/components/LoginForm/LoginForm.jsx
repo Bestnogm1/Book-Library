@@ -9,10 +9,7 @@ const LoginForm = (props) => {
     email: "",
     pw: "",
   });
-  // const [guessInput, setGuessInput] = useState({
-  //   email: "",
-  //   pw: "",
-  // });
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -30,11 +27,11 @@ const LoginForm = (props) => {
       props.updateMessage(err.message);
     }
   };
-  const guestLogin = () => {
+
+  const guestLogin = (evt) => {
     setFormData({ email: "guesttest@gmail.com", pw: "123123" });
-    handleSubmit();
-    // setFormData({ pw: "123123" });
   };
+
   return (
     <div className={styles.loginFormMainContainer}>
       <Bootstrap.Form
@@ -70,16 +67,23 @@ const LoginForm = (props) => {
           />
         </div>
         <div>
-          <Bootstrap.Button type="submit" className={styles.button}>
+          <Bootstrap.Button
+            type="submit"
+            className={styles.button}
+            onSubmit={handleSubmit}
+          >
             Log In
           </Bootstrap.Button>
           <Link to="/">
             <Bootstrap.Button>Cancel</Bootstrap.Button>
           </Link>
-          <Bootstrap.Form.Check
-            aria-label="option 1"
-            onClick={() => guestLogin()}
-          />
+          <div className={styles.LoginFormGuestLogin}>
+            <Bootstrap.Form.Check
+              aria-label="option 1"
+              onClick={(e) => guestLogin(e)}
+            />
+            <h6>Login as guest </h6>
+          </div>
         </div>
       </Bootstrap.Form>
     </div>

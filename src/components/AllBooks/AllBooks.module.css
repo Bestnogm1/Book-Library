@@ -127,3 +127,17 @@ body {
 .booksMainContainerTitle {
   padding-top: 1.5rem;
 }
+@media (max-width: 500px) {
+  .booksMainContainer {
+    width: 22.5rem;
+    max-width: 502px;
+    flex-direction: column;
+    border: 0.5px solid rgb(221, 211, 211);
+    -webkit-box-shadow: 2px 2px 15px -5px #000000;
+    box-shadow: 2px 2px 15px -5px #000000;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    background-color: white;
+    margin-left: 15px;
+  }
+}

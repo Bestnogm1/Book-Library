@@ -32,20 +32,23 @@ const Reviews = ({ bookId, user }) => {
     <>
       <div>
         <h1> Reviews </h1>
-        <input
-          type="text"
-          name="reviews"
-          required
-          value={inputData}
-          onChange={(evt) => setInputData(evt.target.value)}
-        />
-        <Button size="sm" type="submit" onClick={handleSubmit}>
-          add
-        </Button>
+        <div className={style.reviewInputButton}>
+          <textarea
+            className={style.reviewInput}
+            type="text"
+            name="reviews"
+            required
+            value={inputData}
+            onChange={(evt) => setInputData(evt.target.value)}
+          />
+          <Button size="sm" type="submit" onClick={handleSubmit}>
+            submit
+          </Button>
+        </div>
         <div className={style.reviewMainComponent}>
           {getAllReviews &&
             getAllReviews?.map((review, index) => (
-              <>
+              <React.Fragment key={index}>
                 {review?.bookId === bookId ? (
                   <div key={index} className={style.reviewComponent}>
                     <Link to={routeToUserProfile(review)}>
@@ -60,7 +63,7 @@ const Reviews = ({ bookId, user }) => {
                     </div>
                   </div>
                 ) : null}
-              </>
+              </React.Fragment>
             ))}
         </div>
       </div>
