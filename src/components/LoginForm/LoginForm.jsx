@@ -9,6 +9,10 @@ const LoginForm = (props) => {
     email: "",
     pw: "",
   });
+  // const [guessInput, setGuessInput] = useState({
+  //   email: "",
+  //   pw: "",
+  // });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -26,7 +30,11 @@ const LoginForm = (props) => {
       props.updateMessage(err.message);
     }
   };
-
+  const guestLogin = () => {
+    setFormData({ email: "guesttest@gmail.com", pw: "123123" });
+    handleSubmit();
+    // setFormData({ pw: "123123" });
+  };
   return (
     <div className={styles.loginFormMainContainer}>
       <Bootstrap.Form
@@ -68,6 +76,10 @@ const LoginForm = (props) => {
           <Link to="/">
             <Bootstrap.Button>Cancel</Bootstrap.Button>
           </Link>
+          <Bootstrap.Form.Check
+            aria-label="option 1"
+            onClick={() => guestLogin()}
+          />
         </div>
       </Bootstrap.Form>
     </div>
