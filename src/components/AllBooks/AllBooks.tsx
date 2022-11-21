@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import striptags from "striptags";
 import Form from "react-bootstrap/Form";
 import Spinner from "react-bootstrap/Spinner";
@@ -6,22 +6,21 @@ import { Badge, Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./AllBooks.module.css";
 import { AiOutlineFileImage } from "react-icons/ai";
-import * as bookService from "../../services/bookService";
+import { searchForAllBook } from "../../services/bookService";
+import { AllBooksInterface } from "./AllBooksInterface/AllBooksInterface";
 
-const AllBooks = () => {
-  const [allBooks, setAllBooks] = useState(null);
-  const [search, setSearch] = useState("");
-  const [getSearchValue, setGetSearchValue] = useState(
+const AllBooks: FC = () => {
+  const [allBooks, setAllBooks] = useState<AllBooksInterface[]>();
+  const [search, setSearch] = useState<string>("");
+  const [getSearchValue, setGetSearchValue] = useState<string>(
     "Cracking the coding interview"
   );
 
   useEffect(() => {
-    bookService
-      .searchForAllBook(getSearchValue)
-      .then((data) => setAllBooks(data));
+    searchForAllBook(getSearchValue).then((data) => setAllBooks(data));
   }, [getSearchValue]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setGetSearchValue(search);
     setSearch("");
@@ -56,11 +55,12 @@ const AllBooks = () => {
         </Row>
         <Row className={styles.booksContainer}>
           {allBooks ? (
-            allBooks?.map(({ volumeInfo, id }, index) => {
-              const title = volumeInfo.title;
-              const description = volumeInfo.description;
-              const image = volumeInfo.imageLinks?.smallThumbnail;
-              const authors = volumeInfo.authors;
+            allBooks?.map(({ volumeInfo, id }, index: number) => {
+              const title: string | undefined = volumeInfo.title;
+              const description: string | undefined = volumeInfo.description;
+              const image: string | undefined =
+                volumeInfo.imageLinks?.smallThumbnail;
+              const authors: string[] | undefined = volumeInfo.authors;
               return (
                 <Row key={index} className={styles.booksMainContainer}>
                   <div>
@@ -91,7 +91,7 @@ const AllBooks = () => {
                           </div>
                           <Link key={id} to={`/book-detail/${id}`}>
                             <h5>
-                              <Badge size="small">Book Detail</Badge>
+                              <Badge>Book Detail</Badge>
                             </h5>
                           </Link>
                         </div>

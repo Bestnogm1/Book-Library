@@ -5,7 +5,6 @@ import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import Landing from "./pages/Landing/Landing";
 import Profiles from "./pages/Profiles/Profiles";
-import ChangePassword from "./pages/ChangePassword/ChangePassword";
 import * as authService from "./services/authService";
 import BookDetail from "./pages/BookDetail/BookDetail";
 import ProfileDetail from "./pages/ProfileDetail/ProfileDetail";
@@ -54,16 +53,7 @@ const App = () => {
             )
           }
         />
-        <Route
-          path="/changePassword"
-          element={
-            user ? (
-              <ChangePassword handleSignupOrLogin={handleSignupOrLogin} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
+
         <Route
           path="/book-detail/:bookId"
           element={user ? <BookDetail user={user} /> : <Navigate to="/login" />}
