@@ -7,8 +7,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { GiBookshelf } from "react-icons/gi";
 import { BsBookshelf } from "react-icons/bs";
 import { CgLogOut } from "react-icons/cg";
+import React, { FC } from "react";
+import { NavBarInterface } from "./NavBarInterface";
 
-const NavBar = ({ user, handleLogout }) => {
+const NavBar: FC<NavBarInterface> = ({ user, handleLogout }) => {
   return (
     <div className={styles.navBarMainBody}>
       <div>

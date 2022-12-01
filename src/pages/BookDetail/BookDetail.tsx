@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 import { Link, useParams } from "react-router-dom";
 import * as bookService from "../../services/bookService";
 import { showUserBooks } from "../../services/profileService";
@@ -7,12 +7,16 @@ import { AiOutlineFileImage } from "react-icons/ai";
 import style from "./BookDetail.module.css";
 import { Badge, Button, Spinner } from "react-bootstrap";
 import Reviews from "../../components/Reviews/Reviews";
+import { UserInterface } from "../../UserInterface";
+import { BooksDetailsInterface } from "./BookDetailInterface";
 
-const BookDetail = ({ user }) => {
-  const [bookDetail, setBookDetail] = useState("");
+const BookDetail: FC<UserInterface> = ({ user }) => {
+  const [bookDetail, setBookDetail] = useState<BooksDetailsInterface>();
   const [profile, setProfile] = useState(null);
   const { bookId } = useParams();
-
+  console.log("====================================");
+  console.log(bookDetail);
+  console.log("====================================");
   useEffect(() => {
     bookService.getASingleBookId(bookId).then((book) => setBookDetail(book));
   }, []);
@@ -23,7 +27,6 @@ const BookDetail = ({ user }) => {
 
   const addBookToCollection = () => {
     const newBook = {
-      authors: bookDetail.authors,
       bookId: bookId,
     };
     setProfile([...profile, newBook]);

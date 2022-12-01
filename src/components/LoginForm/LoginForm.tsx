@@ -27,11 +27,10 @@ const LoginForm: FC<LoginInterface> = ({
       await authService.login(formData);
       handleSignupOrLogin();
       navigate("/");
-    } catch (err: any) {
-      updateMessage(err.message);
+    } catch (error) {
+      updateMessage(error as string);
     }
   };
-
   const guestLogin = () =>
     setFormData({ email: "guesttest@gmail.com", pw: "123123" });
 

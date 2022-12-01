@@ -1,4 +1,4 @@
 export interface LoginInterface {
   handleSignupOrLogin: () => void;
-  updateMessage: () => void;
+  updateMessage: (args: string) => void;
 }
