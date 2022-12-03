@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 import { Link, useParams } from "react-router-dom";
 import * as bookService from "../../services/bookService";
 import { showUserBooks } from "../../services/profileService";
@@ -7,23 +7,28 @@ import { AiOutlineFileImage } from "react-icons/ai";
 import style from "./BookDetail.module.css";
 import { Badge, Button, Spinner } from "react-bootstrap";
 import Reviews from "../../components/Reviews/Reviews";
+import { UserInterface } from "../../UserInterface";
+import {
+  BooksDetailsInterface,
+  SingleBookInterface,
+} from "./BookDetailInterface/BookDetailInterface";
+import { SingleBookDetailInterface } from "../../components/AllBooks/AllBooksInterface/AllBooksInterface";
 
-const BookDetail = ({ user }) => {
-  const [bookDetail, setBookDetail] = useState("");
-  const [profile, setProfile] = useState(null);
-  const { bookId } = useParams();
+const BookDetail: FC<UserInterface> = ({ user }) => {
+  const [bookDetail, setBookDetail] = useState<BooksDetailsInterface>();
+  const [profile, setProfile] = useState<any | undefined>();
+  const { bookId } = useParams<{ bookId?: string }>();
 
   useEffect(() => {
     bookService.getASingleBookId(bookId).then((book) => setBookDetail(book));
-  }, []);
+  }, [bookId]);
 
   useEffect(() => {
     showUserBooks(user?.profile).then((res) => setProfile(res?.bookshelf));
-  }, []);
+  }, [user]);
 
   const addBookToCollection = () => {
-    const newBook = {
-      authors: bookDetail.authors,
+    const newBook: SingleBookInterface = {
       bookId: bookId,
     };
     setProfile([...profile, newBook]);
@@ -31,8 +36,8 @@ const BookDetail = ({ user }) => {
   };
 
   const doesUserHaveBook = () => {
-    const userHasBook = profile.findIndex(
-      (profileBook) => profileBook?.bookId === bookId
+    const userHasBook = profile?.findIndex(
+      (profileBook: SingleBookDetailInterface) => profileBook?.bookId === bookId
     );
     if (userHasBook === -1) return false;
     return true;

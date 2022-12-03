@@ -1,18 +1,26 @@
-import React from "react";
+import React, { FC, MouseEvent } from "react";
 import { useEffect, useState } from "react";
 import * as reviewService from "../../services/reviewService";
 import { Badge, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import style from "./Reviews.module.css";
+import {
+  ReviewsData,
+  ReviewsFormInterface,
+  ReviewsInterface,
+} from "./ReviewsInterface/ReviewsInterface";
 
-const Reviews = ({ bookId, user }) => {
-  const [getAllReviews, setGetAllReviews] = useState(null);
+const Reviews: FC<ReviewsInterface> = ({ bookId, user }) => {
+  const [getAllReviews, setGetAllReviews] = useState<ReviewsFormInterface[]>(
+    []
+  );
   const [inputData, setInputData] = useState("");
+
   useEffect(() => {
     reviewService.getAllReviews().then((res) => setGetAllReviews(res));
   }, []);
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = (evt: MouseEvent) => {
     evt.preventDefault();
     const newReview = {
       bookId,
@@ -24,10 +32,11 @@ const Reviews = ({ bookId, user }) => {
     setInputData("");
   };
 
-  const routeToUserProfile = (review) => {
-    if (review.ownedBy._id) return `/profileDetail/${review.ownedBy._id}`;
+  const routeToUserProfile = (review: ReviewsData) => {
+    if (review?.ownedBy?._id) return `/profileDetail/${review?.ownedBy?._id}`;
     return `/profileDetail/${user.profile}`;
   };
+
   return (
     <>
       <div>
@@ -35,7 +44,6 @@ const Reviews = ({ bookId, user }) => {
         <div className={style.reviewInputButton}>
           <textarea
             className={style.reviewInput}
-            type="text"
             name="reviews"
             required
             value={inputData}

@@ -1,36 +1,41 @@
-import { useState } from "react";
+import React, { useState, FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.css";
 import * as authService from "../../services/authService";
 import * as Bootstrap from "react-bootstrap";
+import {
+  LoginFromDataInterface,
+  LoginInterface,
+} from "./LoginInterface/LoginInterface";
 
-const LoginForm = (props) => {
-  const [formData, setFormData] = useState({
+const LoginForm: FC<LoginInterface> = ({
+  handleSignupOrLogin,
+  updateMessage,
+}) => {
+  const [formData, setFormData] = useState<LoginFromDataInterface>({
     email: "",
     pw: "",
   });
 
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    props.updateMessage("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    updateMessage("");
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (evt) => {
-    evt.preventDefault();
+  const handleSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
     try {
       await authService.login(formData);
-      props.handleSignupOrLogin();
+      handleSignupOrLogin();
       navigate("/");
-    } catch (err) {
-      props.updateMessage(err.message);
+    } catch (error) {
+      updateMessage(error as string);
     }
   };
-
-  const guestLogin = (evt) => {
+  const guestLogin = () =>
     setFormData({ email: "guesttest@gmail.com", pw: "123123" });
-  };
 
   return (
     <div className={styles.loginFormMainContainer}>
@@ -80,7 +85,7 @@ const LoginForm = (props) => {
           <div className={styles.LoginFormGuestLogin}>
             <Bootstrap.Form.Check
               aria-label="option 1"
-              onClick={(e) => guestLogin(e)}
+              onClick={(e) => guestLogin()}
             />
             <h6>Login as guest </h6>
           </div>

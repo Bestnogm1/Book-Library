@@ -1,4 +1,4 @@
-import * as tokenService from "../services/tokenService";
+import * as tokenService from "./tokenService";
 
 const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/profiles`;
 
@@ -8,7 +8,8 @@ async function getAllProfiles() {
   });
   return await res.json();
 }
-async function showUserBooks(profileId) {
+
+async function showUserBooks(profileId?: string) {
   const response = await fetch(`${BASE_URL}/show`, {
     method: "POST",
     headers: {
@@ -20,7 +21,7 @@ async function showUserBooks(profileId) {
   return response.json();
 }
 
-async function handleDeleteBook(bookId, userId) {
+async function handleDeleteBook(bookId?: string, userId?: string) {
   const response = await fetch(`${BASE_URL}/deleteBook/${userId}`, {
     method: "DELETE",
     headers: {

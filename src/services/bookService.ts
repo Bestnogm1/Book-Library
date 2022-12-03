@@ -1,7 +1,8 @@
-import * as tokenService from "../services/tokenService";
+import * as tokenService from "./tokenService";
+
 const baseUrl = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/books`;
 
-export async function searchForAllBook(bookTitle) {
+export async function searchForAllBook(bookTitle: string) {
   const response = await fetch(`${baseUrl}/getAllSearchedBook`, {
     method: "POST",
     headers: {
@@ -13,7 +14,7 @@ export async function searchForAllBook(bookTitle) {
   return response.json();
 }
 
-export async function getBookById(_bookId) {
+export async function getBookById(_bookId: string) {
   const response = await fetch(`${baseUrl}`, {
     method: "POST",
     headers: {
@@ -25,7 +26,7 @@ export async function getBookById(_bookId) {
   return response.json();
 }
 
-export async function getASingleBookId(bookId) {
+export async function getASingleBookId(bookId: string | undefined) {
   const response = await fetch(`${baseUrl}/getABookByID`, {
     method: "POST",
     headers: {
@@ -36,7 +37,8 @@ export async function getASingleBookId(bookId) {
   });
   return response.json();
 }
-export async function addBookToCollection(bookId) {
+
+export async function addBookToCollection(bookId: string | undefined) {
   const response = await fetch(`${baseUrl}/addBookToCollection`, {
     method: "POST",
     headers: {

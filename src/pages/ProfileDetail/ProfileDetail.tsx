@@ -1,29 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, FC } from "react";
 import { Link, useParams } from "react-router-dom";
 import { handleDeleteBook, showUserBooks } from "../../services/profileService";
 import { Badge, Spinner, Container, Row, Col } from "react-bootstrap";
 import { AiOutlineFileImage } from "react-icons/ai";
 import striptags from "striptags";
 import styles from "../../components/AllBooks/AllBooks.module.css";
+import { ProfileBookInterface } from "./ProfileDetailInterface/ProfileDetailInterface";
+import { UserInterface } from "../../UserInterface";
 
-const ProfileDetail = ({ user }) => {
-  const [profileBook, setProfileBook] = useState("");
-  const { profileId } = useParams();
+const ProfileDetail: FC<UserInterface> = ({ user }) => {
+  const [profileBook, setProfileBook] = useState<ProfileBookInterface>();
+
+  const { profileId } = useParams<{ profileId?: string }>();
 
   useEffect(() => {
     showUserBooks(profileId).then((res) => setProfileBook(res));
   }, [profileId]);
 
-  const isThisTheUser = user.profile === profileId ? true : false;
+  const isThisTheUser = user?.profile === profileId ? true : false;
 
   return (
     <Container>
       <Row>
         <Row>
-          <title>{profileBook.name} Books</title>
+          <title>{profileBook?.name} Books</title>
           <Col>
             <div className={styles.booksMainContainerTitle}>
-              <h3>{profileBook.name} Books</h3>
+              <h3>{profileBook?.name} Books</h3>
             </div>
 
             {profileBook ? (
@@ -73,7 +76,7 @@ const ProfileDetail = ({ user }) => {
                             state={{ book }}
                             to={`/book-detail/${book.bookId}`}
                           >
-                            <Badge size="small">Book Detail</Badge>
+                            <Badge>Book Detail</Badge>
                           </Link>
                           {isThisTheUser ? (
                             <Link to={`/`}>

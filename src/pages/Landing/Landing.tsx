@@ -1,6 +1,8 @@
 import AllBooks from "../../components/AllBooks/AllBooks";
 import styles from "./Landing.module.css";
-const Landing = ({ user }) => {
+import { LandingPropsInterface } from "./LandingInterface/LandingInterface";
+
+const Landing = ({ user }: LandingPropsInterface) => {
   return (
     <main className={styles.container}>
       <>
