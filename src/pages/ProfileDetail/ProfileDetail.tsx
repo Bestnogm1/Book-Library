@@ -10,6 +10,7 @@ import { UserInterface } from "../../UserInterface";
 
 const ProfileDetail: FC<UserInterface> = ({ user }) => {
   const [profileBook, setProfileBook] = useState<ProfileBookInterface>();
+
   const { profileId } = useParams<{ profileId?: string }>();
 
   useEffect(() => {

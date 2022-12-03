@@ -18,6 +18,7 @@ const LoginForm: FC<LoginInterface> = ({
   });
 
   const navigate = useNavigate();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateMessage("");
     setFormData({ ...formData, [e.target.name]: e.target.value });

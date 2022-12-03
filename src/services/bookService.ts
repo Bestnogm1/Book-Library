@@ -1,4 +1,5 @@
 import * as tokenService from "./tokenService";
+
 const baseUrl = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/books`;
 
 export async function searchForAllBook(bookTitle: string) {
@@ -36,6 +37,7 @@ export async function getASingleBookId(bookId: string | undefined) {
   });
   return response.json();
 }
+
 export async function addBookToCollection(bookId: string | undefined) {
   const response = await fetch(`${baseUrl}/addBookToCollection`, {
     method: "POST",

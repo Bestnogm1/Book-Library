@@ -15,6 +15,7 @@ const Reviews: FC<ReviewsInterface> = ({ bookId, user }) => {
     []
   );
   const [inputData, setInputData] = useState("");
+
   useEffect(() => {
     reviewService.getAllReviews().then((res) => setGetAllReviews(res));
   }, []);

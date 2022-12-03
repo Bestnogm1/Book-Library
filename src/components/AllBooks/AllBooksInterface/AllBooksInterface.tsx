@@ -18,6 +18,7 @@ export interface AllBooksInterface {
   selfLink: string;
   volumeInfo: VolumeInfoInterface;
 }
+
 export interface VolumeInfoInterface {
   allowAnonLogging: boolean;
   authors: string[];

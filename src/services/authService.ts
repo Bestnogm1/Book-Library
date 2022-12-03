@@ -1,4 +1,5 @@
 import * as tokenService from "./tokenService";
+
 const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/auth`;
 
 type SignupType = {
@@ -7,6 +8,7 @@ type SignupType = {
   password: string;
   passwordConf: string;
 };
+
 async function signup(user: SignupType) {
   try {
     const res = await fetch(`${BASE_URL}/signup`, {

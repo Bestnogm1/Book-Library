@@ -12,13 +12,14 @@ const SignupForm: FC<SignupFormPropsInterface> = ({
   handleSignupOrLogin,
   updateMessage,
 }) => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState<SignupFormInterface>({
     name: "",
     email: "",
     password: "",
     passwordConf: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateMessage("");
