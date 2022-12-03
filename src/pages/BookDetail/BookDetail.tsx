@@ -8,15 +8,13 @@ import style from "./BookDetail.module.css";
 import { Badge, Button, Spinner } from "react-bootstrap";
 import Reviews from "../../components/Reviews/Reviews";
 import { UserInterface } from "../../UserInterface";
-import { BooksDetailsInterface } from "./BookDetailInterface";
+import { BooksDetailsInterface, ProfileInterface } from "./BookDetailInterface";
 
 const BookDetail: FC<UserInterface> = ({ user }) => {
   const [bookDetail, setBookDetail] = useState<BooksDetailsInterface>();
-  const [profile, setProfile] = useState(null);
-  const { bookId } = useParams();
-  console.log("====================================");
-  console.log(bookDetail);
-  console.log("====================================");
+  const [profile, setProfile] = useState<any | undefined>();
+  const { bookId } = useParams<{ bookId?: string }>();
+
   useEffect(() => {
     bookService.getASingleBookId(bookId).then((book) => setBookDetail(book));
   }, []);
@@ -26,7 +24,7 @@ const BookDetail: FC<UserInterface> = ({ user }) => {
   }, []);
 
   const addBookToCollection = () => {
-    const newBook = {
+    const newBook: ProfileInterface = {
       bookId: bookId,
     };
     setProfile([...profile, newBook]);
@@ -34,8 +32,8 @@ const BookDetail: FC<UserInterface> = ({ user }) => {
   };
 
   const doesUserHaveBook = () => {
-    const userHasBook = profile.findIndex(
-      (profileBook) => profileBook?.bookId === bookId
+    const userHasBook = profile?.findIndex(
+      (profileBook: any) => profileBook?.bookId === bookId
     );
     if (userHasBook === -1) return false;
     return true;

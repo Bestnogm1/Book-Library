@@ -1,5 +1,5 @@
 export interface ReviewsInterface {
-  bookId: string;
+  bookId?: string;
   user: {
     name: string;
     email: string;
@@ -12,7 +12,7 @@ export interface ReviewsInterface {
 }
 
 export interface ReviewsFormInterface {
-  bookId: string;
+  bookId?: string;
   ownedBy: { name: string };
   reviews: string;
 }
