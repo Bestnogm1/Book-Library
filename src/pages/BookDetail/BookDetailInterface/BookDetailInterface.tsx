@@ -26,7 +26,7 @@ export type BooksDetailsInterface = {
   subtitle?: string;
   title?: string;
 };
-export interface ProfileInterface {
+export interface SingleBookInterface {
   authors?: string[];
   bookId?: string;
   cover?: string;

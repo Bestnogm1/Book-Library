@@ -8,16 +8,10 @@ import Profiles from "./pages/Profiles/Profiles";
 import * as authService from "./services/authService";
 import BookDetail from "./pages/BookDetail/BookDetail";
 import ProfileDetail from "./pages/ProfileDetail/ProfileDetail";
-import * as profileService from "./services/profileService";
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const navigate = useNavigate();
-  const [profiles, setProfiles] = useState([]);
-
-  useEffect(() => {
-    profileService.getAllProfiles().then((profiles) => setProfiles(profiles));
-  }, []);
 
   const handleLogout = () => {
     authService.logout();
@@ -45,13 +39,7 @@ const App = () => {
         />
         <Route
           path="/profiles"
-          element={
-            user ? (
-              <Profiles profiles={profiles} user={user} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
+          element={user ? <Profiles user={user} /> : <Navigate to="/login" />}
         />
 
         <Route

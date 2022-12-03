@@ -1,13 +1,15 @@
 import { Buffer } from "buffer";
 
-function setToken(token) {
+function setToken(token: string) {
   localStorage.setItem("token", token);
 }
 
 function getToken() {
   let token = localStorage.getItem("token");
   if (token) {
-    const payload = JSON.parse(Buffer.from(token.split(".")[1], "base64"));
+    const payload = JSON.parse(
+      Buffer.from(token.split(".")[1], "base64").toString()
+    );
     if (payload.exp < Date.now() / 1000) {
       localStorage.removeItem("token");
       token = null;
@@ -21,7 +23,7 @@ function getToken() {
 function getUserFromToken() {
   const token = getToken();
   return token
-    ? JSON.parse(Buffer.from(token.split(".")[1], "base64")).user
+    ? JSON.parse(Buffer.from(token.split(".")[1], "base64").toString()).user
     : null;
 }
 

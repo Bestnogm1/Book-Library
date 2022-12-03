@@ -8,7 +8,7 @@ import {
   ReviewsData,
   ReviewsFormInterface,
   ReviewsInterface,
-} from "./ReviewsInterface";
+} from "./ReviewsInterface/ReviewsInterface";
 
 const Reviews: FC<ReviewsInterface> = ({ bookId, user }) => {
   const [getAllReviews, setGetAllReviews] = useState<ReviewsFormInterface[]>(

@@ -1,5 +1,5 @@
-import * as tokenService from "../services/tokenService";
-const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/reviews`;
+import * as tokenService from "./tokenService";
+const BASE_URL: string = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/reviews`;
 
 async function getAllReviews() {
   const response = await fetch(`${BASE_URL}/getAllMessages`, {
@@ -11,8 +11,12 @@ async function getAllReviews() {
   });
   return response.json();
 }
-
-async function createAReview(reviewsForm) {
+type CreateAReview = {
+  bookId?: string;
+  reviews?: string;
+  ownedBy?: string;
+};
+async function createAReview(reviewsForm: CreateAReview) {
   const response = await fetch(`${BASE_URL}/createReviews`, {
     method: "POST",
     headers: {

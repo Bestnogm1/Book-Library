@@ -3,19 +3,21 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.css";
 import * as authService from "../../services/authService";
 import * as Bootstrap from "react-bootstrap";
-import { LoginInterface } from "../../pages/Login/LoginInterface/LoginInterface";
+import {
+  LoginFromDataInterface,
+  LoginInterface,
+} from "./LoginInterface/LoginInterface";
 
 const LoginForm: FC<LoginInterface> = ({
   handleSignupOrLogin,
   updateMessage,
 }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<LoginFromDataInterface>({
     email: "",
     pw: "",
   });
 
   const navigate = useNavigate();
-  //  React.ChangeEvent<HTMLInputElement>;
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateMessage("");
     setFormData({ ...formData, [e.target.name]: e.target.value });

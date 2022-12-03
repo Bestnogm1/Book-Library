@@ -8,7 +8,10 @@ import style from "./BookDetail.module.css";
 import { Badge, Button, Spinner } from "react-bootstrap";
 import Reviews from "../../components/Reviews/Reviews";
 import { UserInterface } from "../../UserInterface";
-import { BooksDetailsInterface, ProfileInterface } from "./BookDetailInterface";
+import {
+  BooksDetailsInterface,
+  SingleBookInterface,
+} from "./BookDetailInterface/BookDetailInterface";
 import { SingleBookDetailInterface } from "../../components/AllBooks/AllBooksInterface/AllBooksInterface";
 
 const BookDetail: FC<UserInterface> = ({ user }) => {
@@ -18,14 +21,14 @@ const BookDetail: FC<UserInterface> = ({ user }) => {
 
   useEffect(() => {
     bookService.getASingleBookId(bookId).then((book) => setBookDetail(book));
-  }, []);
+  }, [bookId]);
 
   useEffect(() => {
     showUserBooks(user?.profile).then((res) => setProfile(res?.bookshelf));
-  }, []);
+  }, [user]);
 
   const addBookToCollection = () => {
-    const newBook: ProfileInterface = {
+    const newBook: SingleBookInterface = {
       bookId: bookId,
     };
     setProfile([...profile, newBook]);

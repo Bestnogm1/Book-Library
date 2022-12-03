@@ -1,34 +1,41 @@
-import { useState } from "react";
+import { useState, FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./SignupForm.module.css";
 import * as authService from "../../services/authService";
 import * as Bootstrap from "react-bootstrap";
+import {
+  SignupFormInterface,
+  SignupFormPropsInterface,
+} from "./SignUpInterface/SignUpFormInterface";
 
-const SignupForm = (props) => {
+const SignupForm: FC<SignupFormPropsInterface> = ({
+  handleSignupOrLogin,
+  updateMessage,
+}) => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<SignupFormInterface>({
     name: "",
     email: "",
     password: "",
     passwordConf: "",
   });
 
-  const handleChange = (e) => {
-    props.updateMessage("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    updateMessage("");
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
       await authService.signup(formData);
-      props.handleSignupOrLogin();
+      handleSignupOrLogin();
       navigate("/");
-    } catch (err) {
-      props.updateMessage(err.message);
+    } catch (error) {
+      updateMessage(error as string);
     }
   };
 

@@ -8,7 +8,7 @@ import { GiBookshelf } from "react-icons/gi";
 import { BsBookshelf } from "react-icons/bs";
 import { CgLogOut } from "react-icons/cg";
 import React, { FC } from "react";
-import { NavBarInterface } from "./NavBarInterface";
+import { NavBarInterface } from "./NavBarInterface/NavBarInterface";
 
 const NavBar: FC<NavBarInterface> = ({ user, handleLogout }) => {
   return (

@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, FC } from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import styles from "./Login.module.css";
 
-const LoginPage = ({ handleSignupOrLogin }) => {
-  const [message, setMessage] = useState([""]);
+type LoginFormPropstype = {
+  handleSignupOrLogin: () => void;
+};
 
-  const updateMessage = (msg) => setMessage(msg);
+const LoginPage: FC<LoginFormPropstype> = ({ handleSignupOrLogin }) => {
+  const [message, setMessage] = useState("");
+
+  const updateMessage = (msg: string) => setMessage(msg);
 
   return (
     <main className={styles.container}>

@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
 import { getAllBooks } from "../../services/bookService";
-import { useEffect, useState } from "react";
+import { useEffect, useState, FC } from "react";
 import striptags from "striptags";
 import { Badge, Spinner } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import { AiOutlineFileImage } from "react-icons/ai";
 import styles from "../../components/AllBooks/AllBooks.module.css";
+import { UserInterface } from "../../UserInterface";
+import { AllUserBookInterface } from "../ProfileDetail/ProfileDetailInterface/ProfileDetailInterface";
 
-const Profiles = ({ profiles, user }) => {
-  const [allBooks, setAllBooks] = useState(null);
+const Profiles: FC<UserInterface> = ({ user }) => {
+  const [allUserBooks, setAllUsersBooks] = useState<AllUserBookInterface[]>([]);
 
   useEffect(() => {
-    getAllBooks().then((res) => setAllBooks(res));
+    getAllBooks().then((res) => setAllUsersBooks(res));
   }, []);
 
   return (
@@ -22,8 +24,8 @@ const Profiles = ({ profiles, user }) => {
           <h3>Other people are reading...</h3>
         </div>
         <Row className={styles.booksContainer}>
-          {allBooks ? (
-            allBooks.map((book, index) => {
+          {allUserBooks ? (
+            allUserBooks.map((book, index) => {
               return (
                 <Row key={index} className={styles.booksMainContainer}>
                   <div>
@@ -40,18 +42,16 @@ const Profiles = ({ profiles, user }) => {
                           <AiOutlineFileImage className={styles.NoImage} />
                         )}
                         <div className={styles.titleAuthor}>
-                          {user?.profile === book?.ownedBy._id ? (
+                          {user?.profile === book?.ownedBy?._id ? (
                             <>
                               <Link to={`/profileDetail/${book.ownedBy._id}`}>
-                                <Badge size="small" bg="warning">
-                                  You are reading
-                                </Badge>
+                                <Badge bg="warning">You are reading</Badge>
                               </Link>
                             </>
                           ) : (
                             <>
                               <Link to={`/profileDetail/${book.ownedBy._id}`}>
-                                <Badge size="small" bg="info">
+                                <Badge bg="info">
                                   {book.ownedBy.name} is reading
                                 </Badge>
                               </Link>
@@ -74,7 +74,7 @@ const Profiles = ({ profiles, user }) => {
                             state={{ book }}
                             to={`/book-detail/${book.bookId}`}
                           >
-                            <Badge size="small">Book Detail</Badge>
+                            <Badge>Book Detail</Badge>
                           </Link>
                         </div>
                       </div>
