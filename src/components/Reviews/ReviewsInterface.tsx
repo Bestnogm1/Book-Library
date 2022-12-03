@@ -18,19 +18,19 @@ export interface ReviewsFormInterface {
 }
 
 export interface ReviewsData {
-  bookId: string;
-  createdAt: string;
-  ownedBy: {
-    _id: string;
-    bookshelf: string[];
-    email: string;
-    name: string;
-    createdAt: string;
-    updatedAt: string;
-    _v: number;
+  bookId?: string;
+  createdAt?: string;
+  ownedBy?: {
+    _id?: string;
+    bookshelf?: string[];
+    email?: string;
+    name?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    _v?: number;
   };
-  reviews: string;
-  updatedAt: string;
-  _id: string;
-  _v: number;
+  reviews?: string;
+  updatedAt?: string;
+  _id?: string;
+  _v?: number;
 }

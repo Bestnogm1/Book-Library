@@ -9,6 +9,7 @@ import { Badge, Button, Spinner } from "react-bootstrap";
 import Reviews from "../../components/Reviews/Reviews";
 import { UserInterface } from "../../UserInterface";
 import { BooksDetailsInterface, ProfileInterface } from "./BookDetailInterface";
+import { SingleBookDetailInterface } from "../../components/AllBooks/AllBooksInterface/AllBooksInterface";
 
 const BookDetail: FC<UserInterface> = ({ user }) => {
   const [bookDetail, setBookDetail] = useState<BooksDetailsInterface>();
@@ -33,7 +34,7 @@ const BookDetail: FC<UserInterface> = ({ user }) => {
 
   const doesUserHaveBook = () => {
     const userHasBook = profile?.findIndex(
-      (profileBook: any) => profileBook?.bookId === bookId
+      (profileBook: SingleBookDetailInterface) => profileBook?.bookId === bookId
     );
     if (userHasBook === -1) return false;
     return true;

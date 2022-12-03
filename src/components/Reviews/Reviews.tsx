@@ -4,7 +4,11 @@ import * as reviewService from "../../services/reviewService";
 import { Badge, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import style from "./Reviews.module.css";
-import { ReviewsFormInterface, ReviewsInterface } from "./ReviewsInterface";
+import {
+  ReviewsData,
+  ReviewsFormInterface,
+  ReviewsInterface,
+} from "./ReviewsInterface";
 
 const Reviews: FC<ReviewsInterface> = ({ bookId, user }) => {
   const [getAllReviews, setGetAllReviews] = useState<ReviewsFormInterface[]>(
@@ -27,8 +31,8 @@ const Reviews: FC<ReviewsInterface> = ({ bookId, user }) => {
     setInputData("");
   };
 
-  const routeToUserProfile = (review: any) => {
-    if (review.ownedBy._id) return `/profileDetail/${review.ownedBy._id}`;
+  const routeToUserProfile = (review: ReviewsData) => {
+    if (review?.ownedBy?._id) return `/profileDetail/${review?.ownedBy?._id}`;
     return `/profileDetail/${user.profile}`;
   };
 

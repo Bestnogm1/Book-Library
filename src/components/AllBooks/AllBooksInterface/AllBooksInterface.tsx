@@ -45,3 +45,17 @@ export interface VolumeInfoInterface {
   subtitle: string;
   title: string;
 }
+
+export interface SingleBookDetailInterface {
+  authors: string[];
+  bookId: string;
+  cover: string;
+  createdAt: String;
+  description: string;
+  ownedBy: string;
+  publishedDate: string;
+  title: string;
+  updatedAt: string;
+  __v: number;
+  _id: string;
+}
